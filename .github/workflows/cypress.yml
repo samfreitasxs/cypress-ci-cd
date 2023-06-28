@@ -1,4 +1,4 @@
-name: Testes do Cypress
+name: Pipeline de Testes Cypress
 
 on:
   push:
@@ -10,7 +10,7 @@ on:
 
 jobs:
   test:
-    name: Testes do Cypress
+    name: Pipeline de Testes Cypress
     runs-on: ubuntu-latest
 
     steps:
