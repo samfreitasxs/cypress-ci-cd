@@ -11,6 +11,7 @@
   "author": "Samuel Freitas",
   "license": "ISC",
   "devDependencies": {
+    
     "cypress": "^12.16.0"
   }
 }

@@ -23,7 +23,7 @@ jobs:
           node-version: 14
 
       - name: Instalar as dependências
-        run: npm ci
+        run: npm install
 
       - name: Executar os testes
         run: npx cypress run
