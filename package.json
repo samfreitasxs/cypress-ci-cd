@@ -1,0 +1,16 @@
+{
+  "name": "teste-cypress-api",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "cypress:run": "cypress run",
+    "cypress:open": "cypress open"
+  },
+  "keywords": [],
+  "author": "Samuel Freitas",
+  "license": "ISC",
+  "devDependencies": {
+    "cypress": "^12.16.0"
+  }
+}
