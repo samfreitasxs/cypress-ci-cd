@@ -3,10 +3,10 @@ name: Testes do Cypress
 on:
   push:
     branches:
-      - main
+      - master
   pull_request:
     branches:
-      - main
+      - master
 
 jobs:
   test:
@@ -26,4 +26,4 @@ jobs:
         run: npm ci
 
       - name: Executar os testes
-        run: npx run test:cypress
+        run: npx cypress run
