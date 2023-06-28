@@ -1,0 +1,33 @@
+---
+# Arquivo de configuração do Cypress
+
+# Definição do estágio de build
+stages:
+  - test
+
+# Definição do job
+jobs:
+  # Definição do job de teste
+  test:
+    # Nome do job
+    name: Testes do Cypress
+    # Estágio em que o job será executado
+    stage: test
+    # Runner do job
+    runs-on: ubuntu-latest
+
+    # Passos do job
+    steps:
+      - name: Checkout do código
+        uses: actions/checkout@v2
+
+      - name: Configurar o Node.js
+        uses: actions/setup-node@v2
+        with:
+          node-version: 14
+
+      - name: Instalar as dependências
+        run: npm ci
+
+      - name: Executar os testes
+        run: npx run test:cypress
