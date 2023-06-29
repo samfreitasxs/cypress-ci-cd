@@ -29,4 +29,4 @@ jobs:
         with:
           status: ${{ job.status }}
           fields: tests # Campos adicionais a serem exibidos
-          slack_webhook_url: ${{ https://hooks.slack.com/services/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 }}
+          slack_webhook_url: https://hooks.slack.com/services/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
