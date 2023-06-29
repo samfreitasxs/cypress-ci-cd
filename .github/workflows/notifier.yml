@@ -1,21 +1,32 @@
-name: Notifier
+name: Testes e Notificação Slack
 
 on:
   push:
-    branches: [ master ]
-  pull_request:
-    branches: [ master ]
+    branches:
+      - master # Substitua "main" pela branch desejada
 
 jobs:
-
-  messageSlack:
+  testes:
     runs-on: ubuntu-latest
+
     steps:
-    - name: Notification Slack
-      uses: rtCamp/action-slack-notify@v2
-      env:
-        SLACK_CHANNEL: testes-boot-automacao
-        SLACK_TITLE: Automacao de API
-        SLACK_USERNAME: BotCI-Samuel
-        slack_webhook_url: ${{ https://hooks.slack.com/services/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 }}
-        SLACK_MESSAGE: "Testes sendo rodados"
+      - name: Checkout
+        uses: actions/checkout@v2
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v2
+        with:
+          node-version: 14
+
+      - name: Install Dependencies
+        run: npm install
+
+      - name: Run Tests
+        run: npx cypress run # Comando para executar seus testes
+
+      - name: Notify Slack
+        uses: rtCamp/action-slack-notify@v3
+        with:
+          status: ${{ job.status }}
+          fields: tests # Campos adicionais a serem exibidos
+          slack_webhook_url: ${{ https://hooks.slack.com/services/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 }}
