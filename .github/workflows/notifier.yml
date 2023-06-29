@@ -17,5 +17,5 @@ jobs:
         SLACK_CHANNEL: testes-boot-automacao
         SLACK_TITLE: Automacao de API
         SLACK_USERNAME: BotCI-Samuel
-        SLACK_WEBHOOK: ${{https://hooks.slack.com/services/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}}
+        SLACK_WEBHOOK: '${{https://hooks.slack.com/services/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}}'
         SLACK_MESSAGE: "Testes sendo rodados"
