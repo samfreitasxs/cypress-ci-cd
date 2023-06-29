@@ -18,4 +18,4 @@ jobs:
         run: |
           curl -X POST -H 'Content-type: application/json' --data '{
             "text": "Seus testes foram executados com sucesso!"
-          }' https://hooks.slack.com/services/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
+          }' https://hooks.slack.com/services/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
