@@ -27,3 +27,11 @@ jobs:
 
       - name: Executar os testes
         run: npx cypress run
+
+      - name: Notify Slack
+        uses: 8398a7/action-slack@v4
+        env:
+          SLACK_WEBHOOK: https://hooks.slack.com/services/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
+          SLACK_CHANNEL: "#testes-boot-automacao" # Substitua pelo canal desejado
+          SLACK_TITLE: "Notificação de Testes"
+          SLACK_MESSAGE: "Os testes foram executados com sucesso!"
