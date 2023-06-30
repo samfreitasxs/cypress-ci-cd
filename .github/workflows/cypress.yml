@@ -1,4 +1,4 @@
-name: Pipeline de Testes Cypress
+name: Pipeline de Testes Cypress 🚀
 
 on:
   push:
