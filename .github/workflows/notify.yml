@@ -15,8 +15,10 @@ jobs:
 
       # ... etapas adicionais do seu pipeline de testes ...
 
-- name: Send Slack notification
-   run: |
-    curl -X POST -H 'Content-type: application/json' --data '{
+      - name: Send Slack notification
+        run: |
+curl -X POST -H 'Content-type: application/json' --data '{
       "text": "Seus testes foram executados com sucesso!"
-    }' "${{ secrets.SLACK_WEBHOOK_URL }}"
+    }' "${{ secrets.SLACK_WEBHOOK_TOKEN }}"
+
+          curl -X POST -H 'Content-type: application/json' --data '{"text":"Seus testes foram executados"}' https://hooks.slack.com/services/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
