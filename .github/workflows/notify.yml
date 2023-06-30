@@ -17,4 +17,4 @@ jobs:
 
       - name: Send Slack notification
         run: |
-          curl -X POST -H 'Content-type: application/json' --data '{"text":"Seus testes foram executados com sucesso!"}' https://hooks.slack.com/services/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
+          curl -X POST -H 'Content-type: application/json' --data '{"text":"Seus testes foram executados"}' https://hooks.slack.com/services/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
