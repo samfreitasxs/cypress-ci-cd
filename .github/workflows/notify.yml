@@ -1,4 +1,4 @@
-name: Testes e Notificação Slack
+name: Notificação Slack
 
 on:
   push:
