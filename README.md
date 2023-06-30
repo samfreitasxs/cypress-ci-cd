@@ -1,55 +1,68 @@
-# Teste de API usando Cypress
+# Como construir um pipeline de testes para seu projeto Cypress/GitHub🚀
 
-Este projeto consiste em testes automatizados de API utilizando o framework Cypress. Ele inclui testes para as seguintes APIs:
+Configuração inicial
 
-- http://fakerestapi.azurewebsites.net/api/v1/Activities
-- http://fakerestapi.azurewebsites.net/api/v1/Books
-- http://fakerestapi.azurewebsites.net/api/v1/CoverPhotos
-- http://fakerestapi.azurewebsites.net/api/v1/Users
+✅Repositório do projeto Cypress no GitHub
+✅Arquivo cypress.json configurado corretamente
+✅Arquivo package.json com as dependências do projeto
+✅Acesso ao ambiente de execução da pipeline
 
-## Requisitos
+## 📝Instruções:
 
-- Node.js (versão 14 ou superior)
-- Cypress (instalado globalmente ou localmente no projeto)
+1. Criar o arquivo de pipeline
 
-## Instalação
+- Crie um novo repositório para o seu projeto Cypress.
 
-1. Faça o clone deste repositório para o seu ambiente local.
+2. Definir o nome e gatilhos da pipeline
 
-2. Navegue até o diretório do projeto.
+- No início do arquivo YML, defina o nome da pipeline e os eventos que devem acioná-la. Por exemplo:
 
-3. Execute o comando a seguir para instalar as dependências do projeto:
+name: Pipeline de Testes Cypress
 
-npm install
+on:
+push:
+branches:
+- master
 
-## Configuração
+Neste exemplo, a pipeline será acionada a cada push na branch master. Você pode personalizar os gatilhos de acordo com as suas necessidades.
 
-1. No arquivo `cypress.json`, você pode definir as configurações do Cypress, como a URL base das APIs e outras configurações relevantes.
+3. Configurar os jobs da pipeline
 
-2. Verifique as configurações em `cypress/support/index.js` para ajustar o comportamento global dos testes, como autenticação, interceptação de requisições, etc.
+Dentro do bloco jobs, você define os diferentes jobs que serão executados na pipeline. Por exemplo:
 
-## Executando os testes
+jobs:
+  test:
+    name: Pipeline de Testes Cypress
+    runs-on: ubuntu-latest
 
-- Para executar todos os testes, use o seguinte comando:
+    steps:
+      - name: Checkout do código
+        uses: actions/checkout@v2
 
-npm run test:cypress
+      - name: Configurar o Node.js
+        uses: actions/setup-node@v2
+        with:
+          node-version: 14
 
-npm run test:cypress -- --spec "cypress/integration/spec3.cy.js"
+      - name: Instalar as dependências
+        run: npm install
 
+      - name: Executar os testes
+        run: npx cypress run
 
-## Estrutura do projeto
+##  📝No exemplo, o job teste é configurado para ser executado no ambiente ubuntu-latest. Em seguida, definimos as etapas do job:
 
-A estrutura do projeto é organizada da seguinte forma:
+☑ Checkout do código-fonte: Essa etapa faz o checkout do código-fonte do repositório.
 
-- `cypress/e2e`: Contém os arquivos de teste em formato `.spec.cy.js`.
+☑ Instalar dependências: Essa etapa instala as dependências do projeto Cypress com o comando npm install.
 
-- `cypress/support`: Contém os arquivos de suporte para os testes, como comandos personalizados e configurações globais.
+☑ Executar os testes: Nessa etapa, executamos os testes Cypress com o comando npx cypress run.
 
-- `cypress/fixtures`: Contém os arquivos de dados usados nos testes, como dados de entrada e respostas de API mockadas.
+❗ Certifique-se de que seu projeto tenha um script cypress:run definido no arquivo package.json para que a etapa de execução dos testes funcione corretamente.
 
-- `cypress/screenshots` e `cypress/videos`: Diretórios para armazenar capturas de tela e vídeos dos testes, respectivamente.
+4. Fazer commit e push do arquivo de pipeline
 
-## Contribuição
+Após concluir a configuração do arquivo YAML da pipeline, faça o commit e o push do arquivo para o repositório do GitHub. Isso ativará a pipeline de testes para o seu projeto Cypress.
 
-Sinta-se à vontade para contribuir com melhorias neste projeto. Caso tenha sugestões, abra uma nova issue detalhando suas ideias ou envie um pull request com as modificações propostas.
-
+Após o push, a pipeline de testes será executada automaticamente sempre que ocorrer um push na branch especificada. Você poderá acompanhar o progresso da pipeline e verificar os resultados dos testes na seção "Actions" do seu repositório no GitHub.
+#pipeline #cypress #automação #Github #QA #testedesoftware
