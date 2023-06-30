@@ -12,11 +12,11 @@ on:
 
 jobs:
   test:
-    name: Pipeline de Testes Cypress
+    name: Pipeline de Testes Cypress ⏱️
     runs-on: ubuntu-latest
 
     steps:
-      - name: Checkout do código
+      - name: Checkout do código ⏱️
         uses: actions/checkout@v2
 
       - name: Configurar o Node.js
@@ -27,5 +27,5 @@ jobs:
       - name: Instalar as dependências
         run: npm install
 
-      - name: Executar os testes
+      - name: Executar os testes ⏱️
         run: npx cypress run
