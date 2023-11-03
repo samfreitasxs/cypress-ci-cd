@@ -1,38 +1,10 @@
 pipeline {
     agent any
-    triggers {
-        cron('0 8 * * *') // programar o job para rodar às 8h da manhã todos os dias
-    }
+
     stages {
-        stage('Checkout do código') {
+        stage ('Inicial') {
             steps {
-                script {
-                    git branch: '*/master', url: 'https://github.com/samfreitasxs/cypress-ci-cd.git'
-                }
-            }
-        }
-
-        stage('Configurar o Node.js') {
-            steps {
-                script {
-                    // Configurações para instalar o Node.js
-                }
-            }
-        }
-
-        stage('Instalar as dependências') {
-            steps {
-                script {
-                    sh 'npm install'
-                }
-            }
-        }
-
-        stage('Executar os testes') {
-            steps {
-                script {
-                    sh 'npx cypress run'
-                }
+                echo 'Iniciando a pipeline'
             }
         }
     }
