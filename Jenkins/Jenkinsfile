@@ -1,15 +1,46 @@
 pipeline {
-    agent any
-
+    agent {
+        label 'ubuntu-latest' // ou o nome do seu agente Jenkins
+    }
+    triggers {
+        cron('0 8 * * *') // programar o job para rodar às 8h da manhã todos os dias
+    }
     stages {
-        stage('Instalar Dependências') {
+        stage('Checkout do código') {
             steps {
-                sh 'npm install' // ou o comando de instalação de dependências do seu projeto
+                script {
+                    checkout([$class: 'GitSCM',
+                        branches: [[name: '*/master']],
+                        doGenerateSubmoduleConfigurations: false,
+                        extensions: [[$class: 'CleanBeforeCheckout']],
+                        submoduleCfg: [],
+                        userRemoteConfigs: [[url: 'https://github.com/samfreitasxs/cypress-ci-cd.git']]
+                    ])
+                }
             }
         }
-        stage('Executar Testes') {
+
+        stage('Configurar o Node.js') {
             steps {
-                sh './node_modules/.bin/cypress run' // ou o comando para executar os testes do Cypress
+                script {
+                    // Configurações para instalar o Node.js
+                }
+            }
+        }
+
+        stage('Instalar as dependências') {
+            steps {
+                script {
+                    sh 'npm install'
+                }
+            }
+        }
+
+        stage('Executar os testes') {
+            steps {
+                script {
+                    sh 'npx cypress run'
+                }
             }
         }
     }
