@@ -1,7 +1,5 @@
 pipeline {
-    agent {
-        label 'ubuntu-latest' // ou o nome do seu agente Jenkins
-    }
+    agent any
     triggers {
         cron('0 8 * * *') // programar o job para rodar às 8h da manhã todos os dias
     }
@@ -9,13 +7,7 @@ pipeline {
         stage('Checkout do código') {
             steps {
                 script {
-                    checkout([$class: 'GitSCM',
-                        branches: [[name: '*/master']],
-                        doGenerateSubmoduleConfigurations: false,
-                        extensions: [[$class: 'CleanBeforeCheckout']],
-                        submoduleCfg: [],
-                        userRemoteConfigs: [[url: 'https://github.com/samfreitasxs/cypress-ci-cd.git']]
-                    ])
+                    git branch: '*/master', url: 'https://github.com/samfreitasxs/cypress-ci-cd.git'
                 }
             }
         }
