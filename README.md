@@ -58,7 +58,7 @@ jobs:
 
 ☑ Executar os testes: Nessa etapa, executamos os testes Cypress com o comando npx cypress run.
 
-❗ Certifique-se de que seu projeto tenha um script cypress:run definido no arquivo package.json para que a etapa de execução dos testes funcione corretamente.
+❗ Certifique-se de que seu projeto tenha um script cypress:run definido no arquivo package.json para que a etapa de execução dos testes funcione corretamente.?
 
 4. Fazer commit e push do arquivo de pipeline
 
