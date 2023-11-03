@@ -2,9 +2,14 @@ pipeline {
     agent any
 
     stages {
-        stage ('Inicial') {
+        stage('Instalar Dependências') {
             steps {
-                echo 'Iniciando a pipeline'
+                sh 'npm install' // ou o comando de instalação de dependências do seu projeto
+            }
+        }
+        stage('Executar Testes') {
+            steps {
+                sh './node_modules/.bin/cypress run' // ou o comando para executar os testes do Cypress
             }
         }
     }
