@@ -2,54 +2,10 @@ pipeline {
     agent any
 
     stages {
-        stage('Clonar Repositório') {
+        stage ('Inicial') {
             steps {
-                // Clonar seu repositório aqui
+                echo 'Iniciando a pipeline'
             }
-        }
-
-        stage('Compilação') {
-            steps {
-                // Realizar a compilação do código aqui
-            }
-        }
-
-        stage('Testes de Unidade') {
-            steps {
-                // Executar testes de unidade aqui
-            }
-        }
-
-        stage('Testes de Integração') {
-            steps {
-                // Executar testes de integração aqui
-            }
-        }
-
-        stage('Análise Estática de Código') {
-            steps {
-                // Realizar análise estática de código aqui
-            }
-        }
-
-        stage('Implantação') {
-            steps {
-                // Realizar implantação aqui
-            }
-        }
-    }
-
-    post {
-        always {
-            // Realizar tarefas de limpeza ou notificação aqui
-        }
-
-        success {
-            // Realizar ações adicionais em caso de sucesso
-        }
-
-        failure {
-            // Realizar ações adicionais em caso de falha
         }
     }
 }
