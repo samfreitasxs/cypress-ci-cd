@@ -14,7 +14,7 @@ Configuração inicial
 - Crie um novo repositório para o seu projeto Cypress.
 
 2. Definir o nome e gatilhos da pipeline
-
+2..
 - No início do arquivo YML, defina o nome da pipeline e os eventos que devem acioná-la. Por exemplo:
 
 name: Pipeline de Testes Cypress
