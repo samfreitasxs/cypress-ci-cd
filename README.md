@@ -14,7 +14,8 @@ Configuração inicial
 - Crie um novo repositório para o seu projeto Cypress.
 
 2. Definir o nome e gatilhos da pipeline
-2..
+   2..
+
 - No início do arquivo YML, defina o nome da pipeline e os eventos que devem acioná-la. Por exemplo:
 
 name: Pipeline de Testes Cypress
@@ -22,6 +23,7 @@ name: Pipeline de Testes Cypress
 on:
 push:
 branches:
+
 - master
 
 Neste exemplo, a pipeline será acionada a cada push na branch master. Você pode personalizar os gatilhos de acordo com as suas necessidades.
@@ -31,9 +33,9 @@ Neste exemplo, a pipeline será acionada a cada push na branch master. Você pod
 Dentro do bloco jobs, você define os diferentes jobs que serão executados na pipeline. Por exemplo:
 
 jobs:
-  test:
-    name: Pipeline de Testes Cypress
-    runs-on: ubuntu-latest
+test:
+name: Pipeline de Testes Cypress
+runs-on: ubuntu-latest
 
     steps:
       - name: Checkout do código
@@ -50,7 +52,7 @@ jobs:
       - name: Executar os testes
         run: npx cypress run
 
-##  📝No exemplo, o job teste é configurado para ser executado no ambiente ubuntu-latest. Em seguida, definimos as etapas do job:
+## 📝No exemplo, o job teste é configurado para ser executado no ambiente ubuntu-latest. Em seguida, definimos as etapas do job:
 
 ☑ Checkout do código-fonte: Essa etapa faz o checkout do código-fonte do repositório.
 
