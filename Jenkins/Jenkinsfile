@@ -13,15 +13,12 @@ pipeline {
                 checkout scm
             }
         }
-        stage('Instalar Node.js') {
+        stage('Configurar o Node.js') {
             steps {
-                // Instalar Node.js manualmente
-                sh '''
-                curl -sL https://deb.nodesource.com/setup_20.x | sudo -E bash -
-                sudo apt-get install -y nodejs
-                node -v
-                npm -v
-                '''
+                nodejs(nodeJSInstallationName: 'NodeJS 20') {
+                    sh 'node -v'
+                    sh 'npm -v'
+                }
             }
         }
         stage('Instalar as dependencias') {
