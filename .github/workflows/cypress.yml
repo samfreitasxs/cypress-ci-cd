@@ -8,7 +8,7 @@ on:
     branches:
       - master
   schedule:
-    - cron: '0 8 * * *'
+    - cron: "0 8 * * *"
 
 jobs:
   test:
@@ -22,10 +22,10 @@ jobs:
       - name: Configurar o Node.js
         uses: actions/setup-node@v2
         with:
-          node-version: 16
+          node-version: 20
 
       - name: Instalar as dependências 🚀
-        run: npm install 
+        run: npm install
 
       - name: Executar os testes ⏱️
         run: npx cypress run 🚀
