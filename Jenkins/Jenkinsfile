@@ -2,9 +2,37 @@ pipeline {
     agent any
 
     stages {
-        stage ('Inicial') {
+        stage('Inicial') {
             steps {
                 echo 'Iniciando a pipeline'
+            }
+        }
+        stage('Checkout do código') {
+            steps {
+                // Clonar o repositório do Git
+                checkout scm
+            }
+        }
+        stage('Configurar o Node.js') {
+            steps {
+                // Configurar Node.js
+                // Instale o plugin NodeJS no Jenkins para esta etapa funcionar
+                nodejs(nodeJSInstallationName: 'NodeJS 20') {
+                    sh 'node -v'
+                    sh 'npm -v'
+                }
+            }
+        }
+        stage('Instalar as dependências') {
+            steps {
+                // Instalar dependências do projeto
+                sh 'npm install'
+            }
+        }
+        stage('Executar os testes') {
+            steps {
+                // Executar testes do Cypress
+                sh 'npx cypress run'
             }
         }
     }
