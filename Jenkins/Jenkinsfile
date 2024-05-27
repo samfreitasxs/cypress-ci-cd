@@ -15,7 +15,7 @@ pipeline {
         }
         stage('Configurar o Node.js') {
             steps {
-                nodejs(nodeJSInstallationName: 'NodeJS 20') {
+                nodejs(nodeJSInstallationName: 'NodeJS 20.11.1') {
                     sh 'node -v'
                     sh 'npm -v'
                 }
