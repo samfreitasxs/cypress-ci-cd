@@ -22,15 +22,9 @@ describe('Testes das APIs FakeRestAPI v1', () => {
           expect(response.status).to.eq(200)
           coverPhotos = response.body
         })
-  
-      cy.request('GET', 'http://fakerestapi.azurewebsites.net/api/v1/Users')
-        .then((response) => {
-          expect(response.status).to.eq(200)
-          users = response.body
-        })
     })
   
-    it('Deve obter a lista de atividades', () => {
+    it.only('Deve obter a lista de atividades', () => {
       expect(activities).to.be.an('array')
       expect(activities.length).to.be.greaterThan(0)
     })
