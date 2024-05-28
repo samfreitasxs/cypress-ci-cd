@@ -12,7 +12,7 @@ on:
 
 jobs:
   test:
-    name: Pipeline de Testes Cypress ⏱️
+    name: Pipeline de Testes Cypress ⏱️🚀
     runs-on: ubuntu-latest
 
     steps:
