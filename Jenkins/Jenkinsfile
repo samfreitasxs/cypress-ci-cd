@@ -7,9 +7,8 @@ pipeline {
                 echo 'Iniciando a pipeline'
             }
         }
-        stage('Checkout do código') {
+        stage('Checkout do codigo') {
             steps {
-                // Clonar o repositório do Git
                 checkout scm
             }
         }
@@ -23,15 +22,29 @@ pipeline {
         }
         stage('Instalar as dependencias') {
             steps {
-                // Instalar dependências do projeto
                 bat 'npm install'
             }
         }
         stage('Executar os testes') {
             steps {
-                // Executar testes do Cypress
                 bat 'npx cypress run'
             }
+        }
+    }
+    post {
+        success {
+            slackSend (
+                channel: '#build-notifications', 
+                color: 'good', 
+                message: "Build Successful: ${env.JOB_NAME} [${env.BUILD_NUMBER}] (<${env.BUILD_URL}|Open>)"
+            )
+        }
+        failure {
+            slackSend (
+                channel: '#build-notifications', 
+                color: 'danger', 
+                message: "Build Failed: ${env.JOB_NAME} [${env.BUILD_NUMBER}] (<${env.BUILD_URL}|Open>)"
+            )
         }
     }
 }
