@@ -15,8 +15,6 @@ pipeline {
         }
         stage('Configurar o Node.js') {
             steps {
-                // Configurar Node.js
-                // Instale o plugin NodeJS no Jenkins para esta etapa funcionar
                 nodejs(nodeJSInstallationName: 'NodeJS 20') {
                     bat 'node -v'
                     bat 'npm -v'
