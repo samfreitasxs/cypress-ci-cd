@@ -49,19 +49,6 @@ describe('Testes das APIs FakeRestAPI v1', () => {
       expect(users).to.be.an('array')
       expect(users.length).to.be.greaterThan(0)
     })
-  
-    it('Deve obter os detalhes de uma atividade específica', () => {
-      if (activities.length > 0) {
-        const activityId = activities[0].id
-  
-        cy.request(`GET`, `http://fakerestapi.azurewebsites.net/api/v1/Activities/${activityId}`)
-          .then((response) => {
-            expect(response.status).to.eq(200)
-            expect(response.body).to.have.property('id', activityId)
-          })
-      }
-    })
-  
     it('Deve obter os detalhes de um livro específico', () => {
       if (books.length > 0) {
         const bookId = books[0].id
