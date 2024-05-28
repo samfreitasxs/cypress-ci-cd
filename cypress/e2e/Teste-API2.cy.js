@@ -2,7 +2,7 @@ describe('Testes das APIs FakeRestAPI v1', () => {
     let activities = []
     let books = []
     let coverPhotos = []
-    let users = []
+    let users = []+
   
     before(() => {
       cy.request('GET', 'http://fakerestapi.azurewebsites.net/api/v1/Activities')
