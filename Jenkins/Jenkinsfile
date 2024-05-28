@@ -9,7 +9,6 @@ pipeline {
         }
         stage('Checkout do codigo') {
             steps {
-                // Clonar o repositório do Git
                 checkout scm
             }
         }
@@ -23,13 +22,11 @@ pipeline {
         }
         stage('Instalar as dependencias') {
             steps {
-                // Instalar dependências do projeto
                 bat 'npm install'
             }
         }
         stage('Executar os testes') {
             steps {
-                // Executar testes do Cypress
                 bat 'npx cypress run'
             }
         }
