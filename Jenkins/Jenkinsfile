@@ -1,25 +1,38 @@
 pipeline {
     agent any
-    triggers {
-        githubPush()
-    }
+
     stages {
-        stage('Build') {
+        stage('Inicial') {
             steps {
-                echo 'Building...'
-                // Comandos para construir seu projeto
+                echo 'Iniciando a pipeline'
             }
         }
-        stage('Test') {
+        stage('Checkout do código') {
             steps {
-                echo 'Testing...'
-                // Comandos para testar seu projeto
+                // Clonar o repositório do Git
+                checkout scm
             }
         }
-        stage('Deploy') {
+        stage('Configurar o Node.js') {
             steps {
-                echo 'Deploying...'
-                // Comandos para fazer o deploy do seu projeto
+                // Configurar Node.js
+                // Instale o plugin NodeJS no Jenkins para esta etapa funcionar
+                nodejs(nodeJSInstallationName: 'NodeJS 20') {
+                    bat 'node -v'
+                    bat 'npm -v'
+                }
+            }
+        }
+        stage('Instalar as dependencias') {
+            steps {
+                // Instalar dependências do projeto
+                bat 'npm install'
+            }
+        }
+        stage('Executar os testes') {
+            steps {
+                // Executar testes do Cypress
+                bat 'npx cypress run'
             }
         }
     }
