@@ -1,26 +1,36 @@
 pipeline {
     agent any
-     tools { 
-        nodejs "NodeJS 20" 
-    }
-    
+
     stages {
-        stage('Checkout') {
+        stage('Inicial') {
             steps {
-                checkout([$class: 'GitSCM', branches: [[name: '*/master']], userRemoteConfigs: [[url: 'https://github.com/samfreitasxs/cypress-ci-cd.git']]])
+                echo 'Iniciando a pipeline'
             }
         }
-        
-        stage('Build') {
+        stage('Checkout do código') {
             steps {
-                bat "node -v"
+                // Clonar o repositório do Git
+                checkout scm
+            }
+        }
+        stage('Configurar o Node.js') {
+            steps {
+                // Configurar Node.js
+                nodejs(nodeJSInstallationName: 'NodeJS 20') {
+                    bat 'node -v'
+                    bat 'npm -v'
+                }
+            }
+        }
+        stage('Instalar as dependências') {
+            steps {
+                // Instalar dependências do projeto
                 bat 'npm install'
-                bat 'npm run build'
             }
         }
-        
-        stage('Run Unit Tests') {
+        stage('Executar os testes') {
             steps {
+                // Executar testes do Cypress
                 bat 'npx cypress run'
             }
         }
