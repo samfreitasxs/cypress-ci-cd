@@ -10,6 +10,13 @@ describe('Testes das APIs FakeRestAPI v1', () => {
           expect(response.status).to.eq(200)
           activities = response.body
         })
+  
+      cy.request('GET', 'http://fakerestapi.azurewebsites.net/api/v1/Books')
+        .then((response) => {
+          expect(response.status).to.eq(200)
+          books = response.body
+        })
+  
       cy.request('GET', 'http://fakerestapi.azurewebsites.net/api/v1/CoverPhotos')
         .then((response) => {
           expect(response.status).to.eq(200)
