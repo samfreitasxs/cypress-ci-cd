@@ -1,35 +1,87 @@
-describe('MunicipioController API Tests', () => {
-  it('should fetch the list of municipios', () => {
-    cy.request({
-      method: 'GET',
-      url: '/municipios' // Ajuste a URL conforme necessário
-    }).then((response) => {
-      expect(response.status).to.eq(200); // Verifica se a resposta tem status 200
-      expect(response.body).to.be.an('array'); // Verifica se o corpo da resposta é um array
-      expect(response.body.length).to.be.greaterThan(0); // Verifica se o array não está vazio
-    });
-  });
+describe('Testes das APIs FakeRestAPI v1', () => {
+  let activities = []
+  let books = []
+  let coverPhotos = []
+  let users = []+
 
-  it('should return a municipio with specific properties', () => {
-    cy.request({
-      method: 'GET',
-      url: '/municipios' // Ajuste a URL conforme necessário
-    }).then((response) => {
-      expect(response.status).to.eq(200);
-      const municipio = response.body[0]; // Verifica o primeiro município na lista
-      expect(municipio).to.have.property('id');
-      expect(municipio).to.have.property('nome');
-      // Adicione mais propriedades conforme necessário
-    });
-  });
+  before(() => {
+    cy.request('GET', 'http://fakerestapi.azurewebsites.net/api/v1/Activities')
+      .then((response) => {
+        expect(response.status).to.eq(200)
+        activities = response.body
+      })
 
-  it('should handle 404 for invalid endpoint', () => {
-    cy.request({
-      method: 'GET',
-      url: '/municipios/invalid-endpoint',
-      failOnStatusCode: false, // Evita falha automática em status codes diferentes de 2xx
-    }).then((response) => {
-      expect(response.status).to.eq(404); // Verifica se a resposta tem status 404
-    });
-  });
-});
+    cy.request('GET', 'http://fakerestapi.azurewebsites.net/api/v1/Books')
+      .then((response) => {
+        expect(response.status).to.eq(200)
+        books = response.body
+      })
+
+    cy.request('GET', 'http://fakerestapi.azurewebsites.net/api/v1/CoverPhotos')
+      .then((response) => {
+        expect(response.status).to.eq(200)
+        coverPhotos = response.body
+      })
+
+    cy.request('GET', 'http://fakerestapi.azurewebsites.net/api/v1/Users')
+      .then((response) => {
+        expect(response.status).to.eq(200)
+        users = response.body
+      })
+  })
+
+  it('Deve obter a lista de atividades', () => {
+    expect(activities).to.be.an('array')
+    expect(activities.length).to.be.greaterThan(0)
+  })
+
+  it('Deve obter a lista de livros', () => {
+    expect(books).to.be.an('array')
+    expect(books.length).to.be.greaterThan(0)
+  })
+
+  it('Deve obter a lista de capas de livros', () => {
+    expect(coverPhotos).to.be.an('array')
+    expect(coverPhotos.length).to.be.greaterThan(0)
+  })
+
+  it('Deve obter a lista de usuários', () => {
+    expect(users).to.be.an('array')
+    expect(users.length).to.be.greaterThan(0)
+  })
+  it('Deve obter os detalhes de um livro específico', () => {
+    if (books.length > 0) {
+      const bookId = books[0].id
+
+      cy.request(`GET`, `http://fakerestapi.azurewebsites.net/api/v1/Books/${bookId}`)
+        .then((response) => {
+          expect(response.status).to.eq(200)
+          expect(response.body).to.have.property('id', bookId)
+        })
+    }
+  })
+
+  it('Deve obter os detalhes de uma capa de livro específica', () => {
+    if (coverPhotos.length > 0) {
+      const coverPhotoId = coverPhotos[0].id
+
+      cy.request(`GET`, `http://fakerestapi.azurewebsites.net/api/v1/CoverPhotos/${coverPhotoId}`)
+        .then((response) => {
+          expect(response.status).to.eq(200)
+          expect(response.body).to.have.property('id', coverPhotoId)
+        })
+    }
+  })
+
+  it('Deve obter os detalhes de um usuário específico', () => {
+    if (users.length > 0) {
+      const userId = users[0].id
+
+      cy.request(`GET`, `http://fakerestapi.azurewebsites.net/api/v1/Users/${userId}`)
+        .then((response) => {
+          expect(response.status).to.eq(200)
+          expect(response.body).to.have.property('id', userId)
+        })
+    }
+  })
+})
