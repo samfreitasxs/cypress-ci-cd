@@ -6,6 +6,7 @@ Configuração inicial
 ✅Arquivo cypress.json configurado corretamente
 ✅Arquivo package.json com as dependências do projeto
 ✅Acesso ao ambiente de execução da pipeline
+✅Acesso ao ambiente de execução da pipeline
 
 ## 📝Instruções:
 
