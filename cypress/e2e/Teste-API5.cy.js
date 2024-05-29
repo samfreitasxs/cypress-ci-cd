@@ -18,6 +18,11 @@ describe('Testes das APIs FakeRestAPI v1', () => {
         })
     })
   
+    it.only('Deve obter a lista de atividades', () => {
+      expect(activities).to.be.an('array')
+      expect(activities.length).to.be.greaterThan(0)
+    })
+  
     it('Deve obter a lista de livros', () => {
       expect(books).to.be.an('array')
       expect(books.length).to.be.greaterThan(0)
