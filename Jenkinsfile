@@ -1,50 +1,28 @@
 pipeline {
     agent any
-
+     tools { 
+        nodejs "node 20.11.1" 
+    }
+    
     stages {
-        stage('Inicial') {
+        stage('Checkout') {
             steps {
-                echo 'Iniciando a pipeline'
+                checkout([$class: 'GitSCM', branches: [[name: '*/main']], userRemoteConfigs: [[url: 'https://github.com/samfreitasxs/cypress-ci-cd.git']]])
             }
         }
-        stage('Checkout do codigo') {
+        
+        stage('Build') {
             steps {
-                checkout scm
-            }
-        }
-        stage('Configurar o Node.js') {
-            steps {
-                nodejs(nodeJSInstallationName: 'NodeJS 20') {
-                    bat 'node -v'
-                    bat 'npm -v'
-                }
-            }
-        }
-        stage('Instalar as dependencias') {
-            steps {
+                bat "node -v"
                 bat 'npm install'
+                bat 'npm run build'
             }
         }
-        stage('Executar os testes') {
+        
+        stage('Run Unit Tests') {
             steps {
                 bat 'npx cypress run'
             }
-        }
-    }
-    post {
-        success {
-            slackSend (
-                channel: '#build-notifications',
-                color: 'good',
-                message: "Build Successful: ${env.JOB_NAME} [${env.BUILD_NUMBER}] (<${env.BUILD_URL}|Open>)"
-            )
-        }
-        failure {
-            slackSend (
-                channel: '#build-notifications',
-                color: 'danger',
-                message: "Build Failed: ${env.JOB_NAME} [${env.BUILD_NUMBER}] (<${env.BUILD_URL}|Open>)"
-            )
         }
     }
 }
