@@ -7,7 +7,7 @@ pipeline {
                 echo 'Iniciando a pipeline'
             }
         }
-        stage('Checkout do código') {
+        stage('Checkout do codigo') {
             steps {
                 // Clonar o repositório do Git
                 checkout scm
@@ -22,7 +22,7 @@ pipeline {
                 }
             }
         }
-        stage('Instalar as dependências') {
+        stage('Instalar as dependencias') {
             steps {
                 // Instalar dependências do projeto
                 bat 'npm install'
