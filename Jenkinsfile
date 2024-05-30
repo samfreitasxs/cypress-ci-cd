@@ -4,7 +4,8 @@ pipeline {
     environment {
         NODE_ENV = 'production'
         SLACK_CHANNEL = '#notification-pipeline'
-        SLACK_CREDENTIALS_ID = '1WXUniewZxfTvE1vcg3cMuq8'
+        SLACK_CREDENTIALS_ID = '1WXUniewZxfTvE1vcg3cMuq8'  // Certifique-se de que esta ID está correta
+        NPM_CONFIG_PREFIX = 'C:\\Program Files\\nodejs\\npm'  // Caminho alternativo para a configuração do npm
     }
 
     stages {
@@ -33,8 +34,11 @@ pipeline {
         }
         stage('Executar os testes') {
             steps {
-                // Executar testes do Cypress
-                bat 'cypress run'
+                script {
+                    // Criar o diretório necessário para o npm
+                    bat 'mkdir "C:\\WINDOWS\\system32\\config\\systemprofile\\AppData\\Roaming\\npm"'
+                }
+                bat 'npx cypress run'
             }
         }
     }
