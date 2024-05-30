@@ -33,6 +33,7 @@ pipeline {
         }
         stage('Executar os testes') {
             steps {
+                // Executar testes do Cypress
                 bat 'npx cypress run'
             }
         }
