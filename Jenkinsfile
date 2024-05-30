@@ -34,10 +34,6 @@ pipeline {
         }
         stage('Executar os testes') {
             steps {
-                script {
-                    // Criar o diretório necessário para o npm
-                    bat 'mkdir "C:\\WINDOWS\\system32\\config\\systemprofile\\AppData\\Roaming\\npm"'
-                }
                 bat 'npx cypress run'
             }
         }
