@@ -13,7 +13,7 @@ pipeline {
                 echo 'Iniciando a pipeline'
             }
         }
-        stage('Checkout do código') {
+        stage('Checkout do codigo') {
             steps {
                 checkout scm
             }
@@ -26,30 +26,14 @@ pipeline {
                 }
             }
         }
-        stage('Instalar as dependências') {
+        stage('Instalar as dependencias') {
             steps {
                 bat 'npm install'
-            }
-        }
-        stage('Build') {
-            steps {
-                bat 'npm run build'
             }
         }
         stage('Executar os testes') {
             steps {
                 bat 'npx cypress run'
-            }
-        }
-        stage('Relatórios de Teste') {
-            steps {
-                bat 'npx cypress run --reporter junit'
-                junit '**/results/*.xml'
-            }
-        }
-        stage('Deploy') {
-            steps {
-                echo 'Deploying the application...'
             }
         }
     }
