@@ -85,5 +85,16 @@ describe('Testes das APIs FakeRestAPI v1', () => {
           })
       }
     })
+    it('Deve obter os detalhes de um usuário específico', () => {
+      if (users.length > 0) {
+        const userId = users[0].id
+  
+        cy.request(`GET`, `http://fakerestapi.azurewebsites.net/api/v1/Users/${userId}`)
+          .then((response) => {
+            expect(response.status).to.eq(200)
+            expect(response.body).to.have.property('id', userId)
+          })
+      }
+    })
   })
   
