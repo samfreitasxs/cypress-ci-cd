@@ -30,7 +30,7 @@ pipeline {
         stage('Instalar as dependencias') {
             steps {
                 bat 'npm install'
-                bat 'npm install cypress'
+                bat 'npm install cypress --save-dev'
             }
         }
         stage('Executar os testes') {
