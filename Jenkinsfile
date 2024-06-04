@@ -5,6 +5,7 @@ pipeline {
         NODE_ENV = 'production'
         SLACK_CHANNEL = '#notification-pipeline'
         SLACK_CREDENTIALS_ID = '1WXUniewZxfTvE1vcg3cMuq8'  // Certifique-se de que esta ID está correta
+        NPM_CONFIG_PREFIX = 'C:\\Program Files\\nodejs\\npm'  // Caminho alternativo para a configuração do npm
     }
 
     stages {
