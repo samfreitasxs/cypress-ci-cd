@@ -31,7 +31,6 @@ pipeline {
             steps {
                 bat 'npm install'
                 bat 'npm install cypress --save-dev'
-                 bat 'npm list cypress'
             }
         }
         stage('Executar os testes') {
